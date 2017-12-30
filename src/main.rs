@@ -50,6 +50,45 @@ fn define_web_component<T:WebComponent + 'static>(_:T) {
     }
 }
 
+fn log(msg:&str) {
+    js! {
+        console.log(@{msg});
+    }
+}
+
+fn get_attribute(attr_name:&str) -> String{
+    let result = js! {
+        return window.currentElement.getAttribute(@{attr_name})||"";
+    };
+    result.as_str().unwrap().to_string()
+}
+
+fn alert(msg:&str) {
+    js! {
+        alert(@{msg});
+    }
+}
+
+fn set_inner_html(html:&str){
+    js! {
+        window.currentElement.innerHTML = @{html};
+    }
+}
+
+fn set_child_inner_html(target:&str,html:&str){
+    js! {
+        window.currentElement.querySelector(@{target}).innerHTML = @{html};
+    }
+}
+
+fn add_event_listener(event_type:&str,handler:fn()->()){
+    js! {
+        window.currentElement.addEventListener(@{event_type}, () => {
+            (@{handler})();
+        })
+    }
+}
+
 trait WebComponent {
     fn get_element_name() -> &'static str {""}
     fn get_observable_attributes() -> Vec<&'static str> {vec![]}
@@ -69,45 +108,45 @@ impl WebComponent for HelloWorld {
     fn get_observable_attributes() -> Vec<&'static str> {vec!["greeting","name"]}
 
     fn constructor(){
-        js! {
-            window.currentElement.innerHTML = @{r#"
-                <style>
-                    hello-world button {
-                        border: solid 1px black;
-                        border-radius: 5px;
-                        padding: 5px;
-                        font-family: arial;
-                    }
-                </style>
-                <button>Hello World!</button>
-              "#};
-            window.currentElement.addEventListener("click", ()=> alert("🎉🎉🎉"))
-        }
+        set_inner_html(r#"
+            <style>
+                hello-world button {
+                    border: solid 1px black;
+                    border-radius: 5px;
+                    padding: 5px;
+                    font-family: arial;
+                }
+            </style>
+            <button>Hello World!</button>
+          "#);
+         add_event_listener("click",||{
+             alert("Surprise!");
+         })
     }
 
     fn connected(){
-        js! {
-            console.log("connected");
-        }
+        log("connected");
     }
 
     fn disconnected(){
-        js! {
-            console.log("disconnected");
-        }
+        log("disconnected");
     }
 
-    fn attribute_changed(attribute_name:String,old_value:String,new_value:String){
-        js! {
-            var attr = @{attribute_name};
-            var oldVal = @{old_value};
-            var newVal = @{new_value};
-            if(attr === "greeting"){
-                window.currentElement.querySelector("button").innerHTML = newVal + " " + (window.currentElement.getAttribute("name")||"world") + "!";
-            }
-            if(attr === "name"){
-                window.currentElement.querySelector("button").innerHTML = (window.currentElement.getAttribute("greeting")||"Hello") + " "+ newVal + "!";
-            }
+    fn attribute_changed(attribute_name:String,_old_value:String,new_value:String){
+        if attribute_name == "greeting" {
+            let name_attr = get_attribute("name");
+            let name = match name_attr.len() {
+                0 => "World",
+                _ => &name_attr
+            };
+            set_child_inner_html("button",&format!("{} {}!",new_value,name));
+        } else if attribute_name == "name" {
+            let greeting_attr = get_attribute("greeting");
+            let greeting = match greeting_attr.len() {
+                0 => "Hello",
+                _ => &greeting_attr
+            };
+            set_child_inner_html("button",&format!("{} {}!",new_value,greeting));
         }
     }
 }

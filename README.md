@@ -7,20 +7,20 @@ impl WebComponent for HelloWorld {
     fn get_element_name() -> &'static str {"hello-world"}
 
     fn constructor(){
-        js! {
-          window.currentElement.innerHTML = @{r#"
-                <style>
-                    hello-world button {
-                        border: solid 1px black;
-                        border-radius: 5px;
-                        padding: 5px;
-                        font-family: arial;
-                    }
-                </style>
-                <button>"Hello World!</button>
-              "#};
-          window.currentElement.addEventListener("click", ()=> alert("🎉🎉🎉"))
-        }
+      set_inner_html(r#"
+          <style>
+              hello-world button {
+                  border: solid 1px black;
+                  border-radius: 5px;
+                  padding: 5px;
+                  font-family: arial;
+              }
+          </style>
+          <button>Hello World!</button>
+        "#);
+       add_event_listener("click",||{
+           alert("Surprise!");
+       })
     }
 }
 
