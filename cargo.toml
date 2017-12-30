@@ -1,0 +1,6 @@
+[package]
+name = "rust-webcomponent"
+version = "0.1.0"
+
+[dependencies]
+stdweb = "0.2.2"
