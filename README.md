@@ -3,6 +3,8 @@
 I wanted to play around with [stdweb](https://github.com/koute/stdweb) to create a proof of concept to allow Web Components easily. If you aren't familiar with them. They are blocks of code that allow us to create our own html tags. Here's an example of where i'm going:
 
 ```rust
+struct HelloWorld;
+
 impl WebComponent for HelloWorld {
     fn get_element_name() -> &'static str {"hello-world"}
 
