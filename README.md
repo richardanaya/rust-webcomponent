@@ -8,7 +8,18 @@ impl WebComponent for HelloWorld {
 
     fn constructor(){
         js! {
-            window.currentElement.innerHTML = "Hello World!";
+          window.currentElement.innerHTML = @{r#"
+                <style>
+                    hello-world button {
+                        border: solid 1px black;
+                        border-radius: 5px;
+                        padding: 5px;
+                        font-family: arial;
+                    }
+                </style>
+                <button>"Hello World!</button>
+              "#};
+          window.currentElement.addEventListener("click", ()=> alert("🎉🎉🎉"))
         }
     }
 }

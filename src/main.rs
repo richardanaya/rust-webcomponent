@@ -46,7 +46,7 @@ fn define_web_component<T:WebComponent + 'static>(_:T) {
         }
 
         // tell the dom to associate it with an html tag name
-        customElements.define(@{T::get_element_name()}, BasicElement);
+        customElements.define(@{T::get_element_name()}, GeneratedCustomElement);
     }
 }
 
@@ -70,7 +70,18 @@ impl WebComponent for HelloWorld {
 
     fn constructor(){
         js! {
-            window.currentElement.innerHTML = "Hello World!";
+            window.currentElement.innerHTML = @{r#"
+                <style>
+                    hello-world button {
+                        border: solid 1px black;
+                        border-radius: 5px;
+                        padding: 5px;
+                        font-family: arial;
+                    }
+                </style>
+                <button>Hello World!</button>
+              "#};
+            window.currentElement.addEventListener("click", ()=> alert("🎉🎉🎉"))
         }
     }
 
@@ -92,10 +103,10 @@ impl WebComponent for HelloWorld {
             var oldVal = @{old_value};
             var newVal = @{new_value};
             if(attr === "greeting"){
-                window.currentElement.innerHTML = newVal + " " + (window.currentElement.getAttribute("name")||"world") + "!";
+                window.currentElement.querySelector("button").innerHTML = newVal + " " + (window.currentElement.getAttribute("name")||"world") + "!";
             }
             if(attr === "name"){
-                window.currentElement.innerHTML = (window.currentElement.getAttribute("greeting")||"Hello") + " "+ newVal + "!";
+                window.currentElement.querySelector("button").innerHTML = (window.currentElement.getAttribute("greeting")||"Hello") + " "+ newVal + "!";
             }
         }
     }
