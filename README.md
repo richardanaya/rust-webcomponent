@@ -33,11 +33,13 @@ define_web_component(HelloWorld);
 <hello-world></hello-world>
 ```
 
-would output in the browser
+Would output in the browser a button with "Hello World!" that alerts when clicked.
 
-```html
-Hello World!
-```
+Here's a simple demo of this working: https://richardanaya.github.io/rust-webcomponent/
+
+If you are familiar with chrome dev tools, try inspecting the elements and modify the "greeting" and "name" attributes.  For more details check out the source code of this project!
+
+Overall I think I was pleased how easy this mostly was to do.  I would like a more rust native API for interacting with the DOM within the web component as a next step.
 
 # How to run this
 
