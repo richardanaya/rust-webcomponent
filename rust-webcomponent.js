@@ -37,17 +37,23 @@ if( typeof Rust === 'undefined' ) {
             "__extjs_3e980b7ec07b16bf683b3070c11e3eb388759904": function($0, $1, $2, $3, $4, $5, $6) {
                 $1 = Module.STDWEB.to_js($1);$2 = Module.STDWEB.to_js($2);$3 = Module.STDWEB.to_js($3);$4 = Module.STDWEB.to_js($4);$5 = Module.STDWEB.to_js($5);$6 = Module.STDWEB.to_js($6);Module.STDWEB.from_js($0, (function(){window.currentElement = null ; class GeneratedCustomElement extends HTMLElement {static get observedAttributes (){return (($1)). split (":");}constructor (){super (); window.currentElement = this ; (($2))(); window.currentElement = null ;}connectedCallback (){window.currentElement = this ; (($3))(); window.currentElement = null ;}disconnectedCallback (){window.currentElement = this ; (($4))(); window.currentElement = null ;}attributeChangedCallback (attributeName , oldValue , newValue){window.currentElement = this ; (($5))(attributeName , oldValue || "" , newValue || ""); window.currentElement = null ;}}customElements.define (($6), GeneratedCustomElement);})());
             },
-            "__extjs_2149f3dc713142c95d9e44f62e28378d12069740": function($0, $1) {
-                $1 = Module.STDWEB.to_js($1);Module.STDWEB.from_js($0, (function(){window.currentElement.innerHTML = ($1); window.currentElement.addEventListener ("click" , ()=> alert ("🎉🎉🎉"))})());
+            "__extjs_a2d32a1ea1e21316fb2cdf51556ed49fdd1c8471": function($0, $1) {
+                $1 = Module.STDWEB.to_js($1);Module.STDWEB.from_js($0, (function(){console.log (($1));})());
             },
-            "__extjs_2a6193bb2f89ad6ffbed21be1dd7ace43bac05d4": function($0) {
-                Module.STDWEB.from_js($0, (function(){console.log ("connected");})());
+            "__extjs_7976e807bcaa0e17f784a4adc473de9dcc8933c2": function($0, $1) {
+                $1 = Module.STDWEB.to_js($1);Module.STDWEB.from_js($0, (function(){return window.currentElement.getAttribute (($1))|| "" ;})());
             },
-            "__extjs_9e2911d9593f7f804a44933421fa6983c361b3b2": function($0) {
-                Module.STDWEB.from_js($0, (function(){console.log ("disconnected");})());
+            "__extjs_fc56ed462cfddb37d8b68e5cf169edc763b66d09": function($0, $1) {
+                $1 = Module.STDWEB.to_js($1);Module.STDWEB.from_js($0, (function(){alert (($1));})());
             },
-            "__extjs_9fed1904510f258f8b3caaa9a01923bd3e644416": function($0, $1, $2, $3) {
-                $1 = Module.STDWEB.to_js($1);$2 = Module.STDWEB.to_js($2);$3 = Module.STDWEB.to_js($3);Module.STDWEB.from_js($0, (function(){var attr = ($1); var oldVal = ($2); var newVal = ($3); if (attr ==="greeting"){window.currentElement.querySelector ("button"). innerHTML = newVal + " " + (window.currentElement.getAttribute ("name")|| "world")+ "!" ;}if (attr ==="name"){window.currentElement.querySelector ("button"). innerHTML = (window.currentElement.getAttribute ("greeting")|| "Hello")+ " " + newVal + "!" ;}})());
+            "__extjs_6c8b611b1490d2820837892879c6acc1d8dd5643": function($0, $1) {
+                $1 = Module.STDWEB.to_js($1);Module.STDWEB.from_js($0, (function(){window.currentElement.innerHTML = ($1);})());
+            },
+            "__extjs_662c9e03ca86141f7383cf881ad273d3d244421c": function($0, $1, $2) {
+                $1 = Module.STDWEB.to_js($1);$2 = Module.STDWEB.to_js($2);Module.STDWEB.from_js($0, (function(){window.currentElement.querySelector (($1)). innerHTML = ($2);})());
+            },
+            "__extjs_d0ffaf58f88d1f1e26121656bcd33820a563f6f6": function($0, $1, $2) {
+                $1 = Module.STDWEB.to_js($1);$2 = Module.STDWEB.to_js($2);Module.STDWEB.from_js($0, (function(){window.currentElement.addEventListener (($1), ()=> {(($2))();})})());
             },
             "__extjs_559c1045853f5282b358888babc6fe308becdb2e": function($0, $1) {
                 $1 = Module.STDWEB.to_js($1);Module.STDWEB.from_js($0, (function(){document.body.innerHTML = ($1);})());
